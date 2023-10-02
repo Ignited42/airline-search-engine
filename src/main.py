@@ -26,7 +26,8 @@ print(df4.head())
 df5 = df5.drop(columns = 'Equipment')
 print(df5.head())
 
-df1.to_csv('newdata/airplines.csv')
+
+df1.to_csv('newdata/airlines.csv')
 df2.to_csv('newdata/airports.csv')
 df3.to_csv('newdata/countries.csv')
 df4.to_csv('newdata/planes.csv')
