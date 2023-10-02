@@ -23,6 +23,7 @@ print(df2.head())
 df3 = df3.drop(columns = 'dafif_code')
 print(df3.head())
 print(df4.head())
+df5 = df5.drop(columns = 'Equipment')
 print(df5.head())
 
 df1.to_csv('newdata/airplines.csv')
