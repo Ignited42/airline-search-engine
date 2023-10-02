@@ -16,22 +16,17 @@ df1 = df1[df1['Active'] == 'Y']
 df1 = df1.drop(columns = 'Callsign')
 df1 = df1.drop(columns = 'Active')
 print(df1.head())
-#print(df1.isnull().sum())
-
 df2 = df2.drop(columns = 'Type')
 df2 = df2.drop(columns = 'Source')
 df2 = df2.drop(columns = 'Tz database time zone')
 print(df2.head())
-#print(df2.isnull().sum())
-
 df3 = df3.drop(columns = 'dafif_code')
 print(df3.head())
-#print(df3.isnull().sum())
-
 print(df4.head())
-#print(df4.isnull().sum())
+print(df5.head())
 
-print(df5.head()) # Checking
-#print(df5.isnull().sum()) # Print total num of NaN
-
-#print(df.isnull().sum())
+df1.to_csv('newdata/airplines.csv')
+df2.to_csv('newdata/airports.csv')
+df3.to_csv('newdata/countries.csv')
+df4.to_csv('newdata/planes.csv')
+df5.to_csv('newdata/routes.csv')
