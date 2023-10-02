@@ -1,262 +1,262 @@
-,name,iso_code
-0,"Bonaire, Saint Eustatius and Saba",BQ
-1,Aruba,AW
-2,Antigua and Barbuda,AG
-3,United Arab Emirates,AE
-4,Afghanistan,AF
-5,Algeria,DZ
-6,Azerbaijan,AZ
-7,Albania,AL
-8,Armenia,AM
-9,Angola,AO
-10,American Samoa,AS
-11,Argentina,AR
-12,Australia,AU
-13,Ashmore and Cartier Islands,\N
-14,Austria,AT
-15,Anguilla,AI
-16,Antarctica,AQ
-17,Bahrain,BH
-18,Barbados,BB
-19,Botswana,BW
-20,Bermuda,BM
-21,Belgium,BE
-22,Bahamas,BS
-23,Bangladesh,BD
-24,Belize,BZ
-25,Bosnia and Herzegovina,BA
-26,Bolivia,BO
-27,Myanmar,MM
-28,Benin,BJ
-29,Belarus,BY
-30,Solomon Islands,SB
-31,Navassa Island,\N
-32,Brazil,BR
-33,India,IN
-34,Bhutan,BT
-35,Bulgaria,BG
-36,Bouvet Island,BV
-37,Brunei Darussalam,BN
-38,Burundi,BI
-39,Canada,CA
-40,Cambodia,KH
-41,Chad,TD
-42,Sri Lanka,LK
-43,DR Congo,CD
-44,Congo Republic,CG
-45,China,CN
-46,Chile,CL
-47,Cayman Islands,KY
-48,Cocos (Keeling) Islands,CC
-49,Cameroon,CM
-50,Comoros,KM
-51,Colombia,CO
-52,Northern Mariana Islands,MP
-53,Coral Sea Islands,\N
-54,Costa Rica,CR
-55,Central African Republic,CF
-56,Cuba,CU
-57,Cabo Verde,CV
-58,Cook Islands,CK
-59,Cyprus,CY
-60,Denmark,DK
-61,Djibouti,DJ
-62,Dominica,DM
-63,Jarvis Island,\N
-64,Dominican Republic,DO
-65,Ecuador,EC
-66,Egypt,EG
-67,Ireland,IE
-68,Equatorial Guinea,GQ
-69,Estonia,EE
-70,Eritrea,ER
-71,El Salvador,SV
-72,Ethiopia,ET
-73,Europa Island,\N
-74,Czech Republic,CZ
-75,French Guiana,GF
-76,Finland,FI
-77,Fiji,FJ
-78,Falkland Islands,FK
-79,"Micronesia, Fed. Sts.",FM
-80,Faeroe Islands,FO
-81,French Polynesia,PF
-82,Baker Island,\N
-83,France,FR
-84,French Southern Territories,TF
-85,Gambia,GM
-86,Gabon,GA
-87,Georgia,GE
-88,Ghana,GH
-89,Gibraltar,GI
-90,Grenada,GD
-91,Guernsey,GG
-92,Greenland,GL
-93,Germany,DE
-94,Glorioso Islands,\N
-95,Guadeloupe,GP
-96,Guam,GU
-97,Greece,GR
-98,Guatemala,GT
-99,Guinea,GN
-100,Guyana,GY
-101,Palestine,PS
-102,Haiti,HT
-103,Hong Kong,HK
-104,Heard and McDonald Islands,HM
-105,Honduras,HN
-106,Howland Island,\N
-107,Croatia,HR
-108,Hungary,HU
-109,Iceland,IS
-110,Indonesia,ID
-111,Isle of Man,IM
-112,India,IN
-113,British Indian Ocean Territory,IO
-114,Clipperton Island,\N
-115,Iran,IR
-116,Israel,IL
-117,Italy,IT
-118,Cote d'Ivoire,CI
-119,Iraq,IQ
-120,Japan,JP
-121,Jersey,JE
-122,Jamaica,JM
-123,Jan Mayen,\N
-124,Jordan,JO
-125,Johnston Atoll,\N
-126,Juan de Nova Island,\N
-127,Kenya,KE
-128,Kyrgyz Republic,KG
-129,North Korea,KP
-130,Kingman Reef,\N
-131,Kiribati,KI
-132,South Korea,KR
-133,Christmas Island,CX
-134,Kuwait,KW
-135,Kazakhstan,KZ
-136,Laos,LA
-137,Lebanon,LB
-138,Latvia,LV
-139,Lithuania,LT
-140,Liberia,LR
-141,Slovakia,SK
-142,Palmyra Atoll,\N
-143,Lesotho,LS
-144,Luxembourg,LU
-145,Libya,LY
-146,Madagascar,MG
-147,Martinique,MQ
-148,Macao,MO
-149,Moldova,MD
-150,Mayotte,YT
-151,Mongolia,MN
-152,Montserrat,MS
-153,Malawi,MW
-154,Montenegro,ME
-155,Macedonia,MK
-156,Mali,ML
-157,Monaco,MC
-158,Morocco,MA
-159,Mauritius,MU
-160,Midway Islands,\N
-161,Mauritania,MR
-162,Malta,MT
-163,Oman,OM
-164,Maldives,MV
-165,Mexico,MX
-166,Malaysia,MY
-167,Mozambique,MZ
-168,New Caledonia,NC
-169,Niue,NU
-170,Norfolk Island,NF
-171,Niger,NE
-172,Vanuatu,VU
-173,Nigeria,NG
-174,Netherlands,NL
-175,Norway,NO
-176,Nepal,NP
-177,Nauru,NR
-178,Suriname,SR
-179,Netherlands Antilles,AN
-180,Nicaragua,NI
-181,New Zealand,NZ
-182,Paraguay,PY
-183,Pitcairn,PN
-184,Peru,PE
-185,Paracel Islands,\N
-186,Spratly Islands,\N
-187,Pakistan,PK
-188,Poland,PL
-189,Panama,PA
-190,Portugal,PT
-191,Papua New Guinea,PG
-192,Palau,PW
-193,Guinea-Bissau,GW
-194,Qatar,QA
-195,Serbia,RS
-196,Reunion,RE
-197,Marshall Islands,MH
-198,Romania,RO
-199,Philippines,PH
-200,Puerto Rico,PR
-201,Russia,RU
-202,Rwanda,RW
-203,Saudi Arabia,SA
-204,St. Pierre and Miquelon,PM
-205,St. Kitts and Nevis,KN
-206,Seychelles,SC
-207,South Africa,ZA
-208,Senegal,SN
-209,St. Helena,SH
-210,Slovenia,SI
-211,Sierra Leone,SL
-212,Singapore,SG
-213,Somalia,SO
-214,Spain,ES
-215,South Sudan,SS
-216,St. Lucia,LC
-217,Sudan,SD
-218,Svalbard and Jan Mayen Islands,SJ
-219,Sweden,SE
-220,South Georgia and South Sandwich Is.,GS
-221,Syria,SY
-222,Switzerland,CH
-223,Trinidad and Tobago,TT
-224,Tromelin Island,\N
-225,Thailand,TH
-226,Tajikistan,TJ
-227,Turks and Caicos Islands,TC
-228,Tokelau,TK
-229,Tonga,TO
-230,Togo,TG
-231,Sao Tome and Principe,ST
-232,Tunisia,TN
-233,Timor-Leste,TL
-234,Turkey,TR
-235,Tuvalu,TV
-236,Taiwan,TW
-237,Turkmenistan,TM
-238,Tanzania,TZ
-239,Uganda,UG
-240,United Kingdom,GB
-241,Ukraine,UA
-242,United States,US
-243,Burkina Faso,BF
-244,Uruguay,UY
-245,Uzbekistan,UZ
-246,St. Vincent and the Grenadines,VC
-247,Venezuela,VE
-248,British Virgin Islands,VG
-249,Vietnam,VN
-250,United States Virgin Islands,VI
-251,Namibia,\N
-252,Palestine,PS
-253,Wallis and Futuna Islands,WF
-254,Western Sahara,EH
-255,Wake Island,\N
-256,Samoa,WS
-257,Eswatini,SZ
-258,Yemen,YE
-259,Zambia,ZM
-260,Zimbabwe,ZW
+name,iso_code
+"Bonaire, Saint Eustatius and Saba",BQ
+Aruba,AW
+Antigua and Barbuda,AG
+United Arab Emirates,AE
+Afghanistan,AF
+Algeria,DZ
+Azerbaijan,AZ
+Albania,AL
+Armenia,AM
+Angola,AO
+American Samoa,AS
+Argentina,AR
+Australia,AU
+Ashmore and Cartier Islands,\N
+Austria,AT
+Anguilla,AI
+Antarctica,AQ
+Bahrain,BH
+Barbados,BB
+Botswana,BW
+Bermuda,BM
+Belgium,BE
+Bahamas,BS
+Bangladesh,BD
+Belize,BZ
+Bosnia and Herzegovina,BA
+Bolivia,BO
+Myanmar,MM
+Benin,BJ
+Belarus,BY
+Solomon Islands,SB
+Navassa Island,\N
+Brazil,BR
+India,IN
+Bhutan,BT
+Bulgaria,BG
+Bouvet Island,BV
+Brunei Darussalam,BN
+Burundi,BI
+Canada,CA
+Cambodia,KH
+Chad,TD
+Sri Lanka,LK
+DR Congo,CD
+Congo Republic,CG
+China,CN
+Chile,CL
+Cayman Islands,KY
+Cocos (Keeling) Islands,CC
+Cameroon,CM
+Comoros,KM
+Colombia,CO
+Northern Mariana Islands,MP
+Coral Sea Islands,\N
+Costa Rica,CR
+Central African Republic,CF
+Cuba,CU
+Cabo Verde,CV
+Cook Islands,CK
+Cyprus,CY
+Denmark,DK
+Djibouti,DJ
+Dominica,DM
+Jarvis Island,\N
+Dominican Republic,DO
+Ecuador,EC
+Egypt,EG
+Ireland,IE
+Equatorial Guinea,GQ
+Estonia,EE
+Eritrea,ER
+El Salvador,SV
+Ethiopia,ET
+Europa Island,\N
+Czech Republic,CZ
+French Guiana,GF
+Finland,FI
+Fiji,FJ
+Falkland Islands,FK
+"Micronesia, Fed. Sts.",FM
+Faeroe Islands,FO
+French Polynesia,PF
+Baker Island,\N
+France,FR
+French Southern Territories,TF
+Gambia,GM
+Gabon,GA
+Georgia,GE
+Ghana,GH
+Gibraltar,GI
+Grenada,GD
+Guernsey,GG
+Greenland,GL
+Germany,DE
+Glorioso Islands,\N
+Guadeloupe,GP
+Guam,GU
+Greece,GR
+Guatemala,GT
+Guinea,GN
+Guyana,GY
+Palestine,PS
+Haiti,HT
+Hong Kong,HK
+Heard and McDonald Islands,HM
+Honduras,HN
+Howland Island,\N
+Croatia,HR
+Hungary,HU
+Iceland,IS
+Indonesia,ID
+Isle of Man,IM
+India,IN
+British Indian Ocean Territory,IO
+Clipperton Island,\N
+Iran,IR
+Israel,IL
+Italy,IT
+Cote d'Ivoire,CI
+Iraq,IQ
+Japan,JP
+Jersey,JE
+Jamaica,JM
+Jan Mayen,\N
+Jordan,JO
+Johnston Atoll,\N
+Juan de Nova Island,\N
+Kenya,KE
+Kyrgyz Republic,KG
+North Korea,KP
+Kingman Reef,\N
+Kiribati,KI
+South Korea,KR
+Christmas Island,CX
+Kuwait,KW
+Kazakhstan,KZ
+Laos,LA
+Lebanon,LB
+Latvia,LV
+Lithuania,LT
+Liberia,LR
+Slovakia,SK
+Palmyra Atoll,\N
+Lesotho,LS
+Luxembourg,LU
+Libya,LY
+Madagascar,MG
+Martinique,MQ
+Macao,MO
+Moldova,MD
+Mayotte,YT
+Mongolia,MN
+Montserrat,MS
+Malawi,MW
+Montenegro,ME
+Macedonia,MK
+Mali,ML
+Monaco,MC
+Morocco,MA
+Mauritius,MU
+Midway Islands,\N
+Mauritania,MR
+Malta,MT
+Oman,OM
+Maldives,MV
+Mexico,MX
+Malaysia,MY
+Mozambique,MZ
+New Caledonia,NC
+Niue,NU
+Norfolk Island,NF
+Niger,NE
+Vanuatu,VU
+Nigeria,NG
+Netherlands,NL
+Norway,NO
+Nepal,NP
+Nauru,NR
+Suriname,SR
+Netherlands Antilles,AN
+Nicaragua,NI
+New Zealand,NZ
+Paraguay,PY
+Pitcairn,PN
+Peru,PE
+Paracel Islands,\N
+Spratly Islands,\N
+Pakistan,PK
+Poland,PL
+Panama,PA
+Portugal,PT
+Papua New Guinea,PG
+Palau,PW
+Guinea-Bissau,GW
+Qatar,QA
+Serbia,RS
+Reunion,RE
+Marshall Islands,MH
+Romania,RO
+Philippines,PH
+Puerto Rico,PR
+Russia,RU
+Rwanda,RW
+Saudi Arabia,SA
+St. Pierre and Miquelon,PM
+St. Kitts and Nevis,KN
+Seychelles,SC
+South Africa,ZA
+Senegal,SN
+St. Helena,SH
+Slovenia,SI
+Sierra Leone,SL
+Singapore,SG
+Somalia,SO
+Spain,ES
+South Sudan,SS
+St. Lucia,LC
+Sudan,SD
+Svalbard and Jan Mayen Islands,SJ
+Sweden,SE
+South Georgia and South Sandwich Is.,GS
+Syria,SY
+Switzerland,CH
+Trinidad and Tobago,TT
+Tromelin Island,\N
+Thailand,TH
+Tajikistan,TJ
+Turks and Caicos Islands,TC
+Tokelau,TK
+Tonga,TO
+Togo,TG
+Sao Tome and Principe,ST
+Tunisia,TN
+Timor-Leste,TL
+Turkey,TR
+Tuvalu,TV
+Taiwan,TW
+Turkmenistan,TM
+Tanzania,TZ
+Uganda,UG
+United Kingdom,GB
+Ukraine,UA
+United States,US
+Burkina Faso,BF
+Uruguay,UY
+Uzbekistan,UZ
+St. Vincent and the Grenadines,VC
+Venezuela,VE
+British Virgin Islands,VG
+Vietnam,VN
+United States Virgin Islands,VI
+Namibia,\N
+Palestine,PS
+Wallis and Futuna Islands,WF
+Western Sahara,EH
+Wake Island,\N
+Samoa,WS
+Eswatini,SZ
+Yemen,YE
+Zambia,ZM
+Zimbabwe,ZW
