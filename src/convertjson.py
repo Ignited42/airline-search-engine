@@ -1,5 +1,10 @@
+# Author: Yuuki
+# Description:
+#   Purpose of file is to convert .csv files into .json files.
+
 import pandas as pd
 from json import loads, dumps
+import properjsondocument
 
 df_airline = pd.read_csv('newdata/airlines.csv')
 df_airports = pd.read_csv('newdata/airports.csv')
@@ -79,10 +84,12 @@ parsed = loads(airports_json)
 #print(dumps(parsed, indent=4) ) # Printing
 #==============================
 
-df_new1.to_json('JSONdata/airlines.json', orient='records')
-df_new2.to_json('JSONdata/airports.json', orient='records')
-df_new3.to_json('JSONdata/countries.json', orient='records')
-df_new4.to_json('JSONdata/planes.json', orient='records')
-df_new5.to_json('JSONdata/routes.json', orient='records')
+#df_new1.to_json('JSONdata/airlines.json', orient='records')
+#df_new2.to_json('JSONdata/airports.json', orient='records')
+#df_new3.to_json('JSONdata/countries.json', orient='records')
+#df_new4.to_json('JSONdata/planes.json', orient='records')
+#df_new5.to_json('JSONdata/routes.json', orient='records')
+
+properjsondocument.create_collection(df_new1)
 
 print("Done.")
