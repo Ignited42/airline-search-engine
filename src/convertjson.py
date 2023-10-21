@@ -44,7 +44,7 @@ df_new3['Code'] = df_new3[['ISO']].to_dict('records')
 
 df_new3 = df_new3.drop(columns=['ISO']) # Delete duplicated columns
 
-airports_json = df_new3.to_json(orient='records') # Convert to JSON
+countries_json = df_new3.to_json(orient='records') # Convert to JSON
 
 parsed = loads(airports_json)
 #print(dumps(parsed, indent=4) ) # Printing
@@ -58,7 +58,7 @@ df_new4['Code'] = df_new4[['IATA', 'ICAO']].to_dict('records')
 
 df_new4 = df_new4.drop(columns=['IATA', 'ICAO']) # Delete duplicated columns
 
-airports_json = df_new4.to_json(orient='records') # Convert to JSON
+planes_json = df_new4.to_json(orient='records') # Convert to JSON
 
 parsed = loads(airports_json)
 #print(dumps(parsed, indent=4) ) # Printing
@@ -73,8 +73,16 @@ df_new5['Airports'] = df_new5[['Source Name', 'Source ID', 'Destination Name', '
 
 df_new5 = df_new5.drop(columns=['Name', 'ID', 'Source Name', 'Source ID', 'Destination Name', 'Destination ID']) # Delete duplicated columns
 
-airports_json = df_new5.to_json(orient='records') # Convert to JSON
+routes_json = df_new5.to_json(orient='records') # Convert to JSON
 
 parsed = loads(airports_json)
 #print(dumps(parsed, indent=4) ) # Printing
 #==============================
+
+df_new1.to_json('JSONdata/airlines.json', orient='records')
+df_new2.to_json('JSONdata/airports.json', orient='records')
+df_new3.to_json('JSONdata/countries.json', orient='records')
+df_new4.to_json('JSONdata/planes.json', orient='records')
+df_new5.to_json('JSONdata/routes.json', orient='records')
+
+print("Done.")
