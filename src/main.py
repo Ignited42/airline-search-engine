@@ -1,34 +1,35 @@
 import pandas as pd
+from json import loads, dumps
+import properjsondocument
 
-df1 = pd.read_csv('data/raw/airlines.dat')
-df2 = pd.read_csv('data/raw/airports.dat')
-df3 = pd.read_csv('data/raw/countries.dat')
-df4 = pd.read_csv('data/raw/planes.dat')
-df5 = pd.read_csv('data/raw/routes.dat')
+df_airline = pd.read_csv('newdata/airlines.csv')
+df_airports = pd.read_csv('newdata/airports.csv')
+df_countries = pd.read_csv('newdata/countries.csv')
+df_planes = pd.read_csv('newdata/planes.csv')
+df_routes = pd.read_csv('newdata/routes.csv')
 
-df1 = df1.fillna(r'\N')
-df2 = df2.fillna(r'\N')
-df3 = df3.fillna(r'\N')
-df4 = df4.fillna(r'\N')
-df5 = df5.fillna(r'\N')
+#======================================================================
+df_new1 = df_airline[['Airline ID', 'Name', 'Country', 'IATA', 'ICAO']] # Select new rows
+df_new1.columns =  ['ID', 'Name', 'Country', 'IATA', 'ICAO'] # Change columns name
 
-df1 = df1[df1['Active'] == 'Y']
-df1 = df1.drop(columns = 'Callsign')
-df1 = df1.drop(columns = 'Active')
-print(df1.head())
-df2 = df2.drop(columns = 'Type')
-df2 = df2.drop(columns = 'Source')
-df2 = df2.drop(columns = 'Tz database time zone')
-print(df2.head())
-df3 = df3.drop(columns = 'dafif_code')
-print(df3.head())
-print(df4.head())
-df5 = df5.drop(columns = 'Equipment')
-print(df5.head())
+df_new1['Code'] = df_new1[['IATA', 'ICAO']].to_dict('records') # Make a new row "Code" and includes 'IATA' and 'ICAO'
+df_new1 = df_new1.drop(columns=['IATA', 'ICAO']) # Delete duplicated columns
 
 
-df1.to_csv('newdata/airlines.csv', index=False)
-df2.to_csv('newdata/airports.csv', index=False)
-df3.to_csv('newdata/countries.csv', index=False)
-df4.to_csv('newdata/planes.csv', index=False)
-df5.to_csv('newdata/routes.csv', index=False)
+entry = df_new1.iloc[1]
+
+entry['Country'] = df_countries.loc[df_countries["name"] == entry["Country"]].to_dict('records')[0]
+
+print(entry)
+
+#=====================================================================
+
+#print(df_new1.head(5))
+
+
+#entry = df_new1.iloc[1].to_dict()
+
+#for x in entry.keys():
+#    print(str(x) +  " = " + str(entry[x]))
+
+#properjsondocument.create_airline_collection(df_new1, df_countries)
