@@ -1,35 +1,48 @@
+# Authors: Mark, Steven, Yuuki
+# Description:
+#   Main file of source code
+
 import pandas as pd
-from json import loads, dumps
-import properjsondocument
+import time
+import os
 
-df_airline = pd.read_csv('newdata/airlines.csv')
-df_airports = pd.read_csv('newdata/airports.csv')
-df_countries = pd.read_csv('newdata/countries.csv')
-df_planes = pd.read_csv('newdata/planes.csv')
-df_routes = pd.read_csv('newdata/routes.csv')
+import convertjson
+import firebase
+import stats
 
-#======================================================================
-df_new1 = df_airline[['Airline ID', 'Name', 'Country', 'IATA', 'ICAO']] # Select new rows
-df_new1.columns =  ['ID', 'Name', 'Country', 'IATA', 'ICAO'] # Change columns name
+airlines_df = convertjson.df_new1
+airports_df = convertjson.df_new2
+countries_df = convertjson.df_new3
+planes_df = convertjson.df_new4
+routes_df = convertjson.df_new5
 
-df_new1['Code'] = df_new1[['IATA', 'ICAO']].to_dict('records') # Make a new row "Code" and includes 'IATA' and 'ICAO'
-df_new1 = df_new1.drop(columns=['IATA', 'ICAO']) # Delete duplicated columns
+times = list()
 
+times.append(time.time())
 
-entry = df_new1.iloc[1]
+firebase.create_collection(airlines_df, "Airlines")
+times.append(time.time())
 
-entry['Country'] = df_countries.loc[df_countries["name"] == entry["Country"]].to_dict('records')[0]
+firebase.create_collection(airports_df, "Airports")
+times.append(time.time())
 
-print(entry)
+firebase.create_collection(countries_df, "Countries")
+times.append(time.time())
 
-#=====================================================================
+firebase.create_collection(planes_df, "Planes")
+times.append(time.time())
 
-#print(df_new1.head(5))
+firebase.create_collection(routes_df, "Routes")
+times.append(time.time())
 
+try:
+    os.mkdir("stats")
+    outfile = open("stats/realtimedb_stats.txt", "w")
 
-#entry = df_new1.iloc[1].to_dict()
+    stats.write_collection_stats(outfile, times)
 
-#for x in entry.keys():
-#    print(str(x) +  " = " + str(entry[x]))
-
-#properjsondocument.create_airline_collection(df_new1, df_countries)
+    outfile.close()
+except:
+    outfile = open("realtimedb_stats.txt", "w")
+    stats.write_collection_stats(outfile, times)
+    outfile.close()

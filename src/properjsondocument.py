@@ -2,10 +2,6 @@
 # Description:
 #   Purpose of file is to output proper JSON files to be ingested into a NoSQL document DB
 
-import pandas as pd
-import json
-import os
-
 def create_airline_collection(airline_df, country_df):
     for x in airline_df.index:
         entry = country_df.loc[country_df['Name'] == airline_df.iloc[x]['Country']].to_dict('records')
