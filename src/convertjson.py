@@ -103,6 +103,6 @@ properjsondocument.create_routes_collection(df_new5, df_new2)
 
 end_time = time.time()
 
-print("Elapsed time: " + str(end_time - start_time))
+print("Elapsed time for JSON conversion: " + str(end_time - start_time))
 
 #print("Done.")
