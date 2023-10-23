@@ -15,5 +15,13 @@ firebase_admin.initialize_app(cred, {
 })
 
 def create_collection(dataframe, collection_name):
+    ref = db.reference(str(collection_name))
+
+    for i in dataframe.index:
+        try:  # Case where dataframe has column named 'Name'
+            id = dataframe.iloc[i]['Name']
+            ref.child(str(id)).update(dataframe.iloc[i].to_dict())
+        except: # Case where dataframe doesn't have 'Name' column
+            ref.child(str(i)).update(dataframe.iloc[i].to_dict())
 
     return
