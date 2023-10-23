@@ -22,6 +22,15 @@ entry['Country'] = df_countries.loc[df_countries["name"] == entry["Country"]].to
 
 print(entry)
 
+
+
+
+
+
+
+
+
+
 #=====================================================================
 
 #print(df_new1.head(5))
