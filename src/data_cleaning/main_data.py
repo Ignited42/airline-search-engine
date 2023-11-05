@@ -7,7 +7,7 @@ import time
 import os
 
 import convertjson
-import firebase
+import firestore
 import stats
 
 airlines_df = convertjson.df_new1
@@ -17,32 +17,33 @@ planes_df = convertjson.df_new4
 routes_df = convertjson.df_new5
 
 times = list()
-
+"""
 times.append(time.time())
 
-firebase.create_collection(airlines_df, "Airlines")
+firestore.create_collection(airlines_df, "Airlines")
 times.append(time.time())
 
-firebase.create_collection(airports_df, "Airports")
+firestore.create_collection(airports_df, "Airports")
 times.append(time.time())
 
-firebase.create_collection(countries_df, "Countries")
+firestore.create_collection(countries_df, "Countries")
 times.append(time.time())
 
-firebase.create_collection(planes_df, "Planes")
+firestore.create_collection(planes_df, "Planes")
 times.append(time.time())
-
-firebase.create_collection(routes_df, "Routes")
+"""
+print("Starting Routes collection")
+firestore.create_collection(routes_df, "Routes")
 times.append(time.time())
 
 try:
     os.mkdir("stats")
-    outfile = open("stats/realtimedb_stats.txt", "w")
+    outfile = open("stats/firestore_stats.txt", "w")
 
     stats.write_collection_stats(outfile, times)
 
     outfile.close()
 except:
-    outfile = open("realtimedb_stats.txt", "w")
+    outfile = open("firestore_stats.txt", "w")
     stats.write_collection_stats(outfile, times)
     outfile.close()

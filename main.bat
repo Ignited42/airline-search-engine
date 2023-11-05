@@ -1,1 +1,1 @@
-python src/main.py
+python src/data_cleaning/main_data.py
