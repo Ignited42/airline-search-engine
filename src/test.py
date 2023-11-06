@@ -1,4 +1,3 @@
-from data_operations import graph
 from utils import word_similarity as ws
 import time
 
