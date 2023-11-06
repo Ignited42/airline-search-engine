@@ -2,6 +2,13 @@
 # Description:
 #   Main file to run source code
 
-import data_querying.data_querying as dq
+from data_operations import graph
 
-dq.list_collection("Planes", 5)
+#graph.create_graph()
+
+routes = [{"help" : "me"}, {"hah" : "hoh"}]
+
+if "help" not in routes:
+    print("not in")
+else:
+    print("in")
