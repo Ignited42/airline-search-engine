@@ -25,7 +25,7 @@ def ListAirline(n):
     snapshot = airlineRef.order_by_key().limit_to_first(n).get()
 
     for key in snapshot:
-        airline_list.append(key)
+        airline_list.append(f"{snapshot[key]['Name']}")
 
     return airline_list
 
@@ -36,7 +36,7 @@ def ListAirport(n):
     snapshot = airportRef.order_by_key().limit_to_first(n).get()
 
     for key in snapshot:
-        airport_list.append(key)
+        airport_list.append(f"{snapshot[key]['Name']}")
 
     return airport_list
 
@@ -54,12 +54,12 @@ def main():
     text = 'Tokyo Haneda International Airport'
 
     start_time = time.time()
-    print(ListAirline(10))
+    print("Airline: " + str(ListAirline(5)))
     end_time = time.time()
     print("Elapsed time (ListAirline()): " + str(end_time - start_time))
     
     start_time = time.time()
-    ListAirport(10)
+    print("Airport: " + str(ListAirport(5)))
     end_time = time.time()
     print("Elapsed time (ListAirport()): " + str(end_time - start_time))
 
