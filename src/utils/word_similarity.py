@@ -7,7 +7,8 @@ ALPHABET_SIZE = 26
 def compare_words(word1, word2):
     """
     Compares two words: word1 and word2, and gives a similarity index.\n
-    The algorithm is known as Damerau-Levenshtein distance algorithm.
+    The algorithm is known as Damerau-Levenshtein distance algorithm.\n
+    Code from: https://www.geeksforgeeks.org/damerau-levenshtein-distance/
     """
     word1 = str(word1)
     word2 = str(word2)
