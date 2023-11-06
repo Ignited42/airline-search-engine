@@ -6,6 +6,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import time
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('./credentials.json')
@@ -19,19 +20,25 @@ firebase_admin.initialize_app(cred, {
 
 def ListAirline():
     airlineRef = db.reference('Airlines')
+    airline_list = []
 
     snapshot = airlineRef.order_by_key().get()
 
     for key in snapshot:
-        print(key) # Print all
+        airline_list.append(key)
+
+    return airline_list
 
 def ListAirport():
     airportRef = db.reference('Airports')
+    airport_list = []
 
     snapshot = airportRef.order_by_key().get()
 
     for key in snapshot:
-        print(key) # Print all
+        airport_list.append(key)
+
+    return airport_list
 
 def SerchAirport(input):
     airportRef = db.reference('Airports')
@@ -46,9 +53,21 @@ def SerchAirport(input):
 def main():
     text = 'Tokyo Haneda International Airport'
 
-    ListAirline()
+    start_time = time.time()
+    print(ListAirline())
+    end_time = time.time()
+    print("Elapsed time (ListAirline()): " + str(end_time - start_time))
+    
+    start_time = time.time()
     ListAirport()
+    end_time = time.time()
+    print("Elapsed time (ListAirport()): " + str(end_time - start_time))
+
+    start_time = time.time()
     SerchAirport(text)
+    end_time = time.time()
+    print("Elapsed time (SerchAirport()): " + str(end_time - start_time))
+
 
 if __name__ == "__main__":
     main()
