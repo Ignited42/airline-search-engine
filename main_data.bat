@@ -1,0 +1,1 @@
+python src/data_uploading/main_data.py
