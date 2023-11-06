@@ -18,22 +18,22 @@ firebase_admin.initialize_app(cred, {
 
 #dq.list_collection("Planes", 5)
 
-def ListAirline():
+def ListAirline(n):
     airlineRef = db.reference('Airlines')
     airline_list = []
 
-    snapshot = airlineRef.order_by_key().get()
+    snapshot = airlineRef.order_by_key().limit_to_first(n).get()
 
     for key in snapshot:
         airline_list.append(key)
 
     return airline_list
 
-def ListAirport():
+def ListAirport(n):
     airportRef = db.reference('Airports')
     airport_list = []
 
-    snapshot = airportRef.order_by_key().get()
+    snapshot = airportRef.order_by_key().limit_to_first(n).get()
 
     for key in snapshot:
         airport_list.append(key)
@@ -43,7 +43,7 @@ def ListAirport():
 def SerchAirport(input):
     airportRef = db.reference('Airports')
 
-    snapshot = airportRef.order_by_key().get()
+    snapshot = airportRef.order_by_key().equal_to(input).get()
 
     for key in snapshot:
         if key == input:
@@ -54,12 +54,12 @@ def main():
     text = 'Tokyo Haneda International Airport'
 
     start_time = time.time()
-    print(ListAirline())
+    print(ListAirline(10))
     end_time = time.time()
     print("Elapsed time (ListAirline()): " + str(end_time - start_time))
     
     start_time = time.time()
-    ListAirport()
+    ListAirport(10)
     end_time = time.time()
     print("Elapsed time (ListAirport()): " + str(end_time - start_time))
 
