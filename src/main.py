@@ -3,12 +3,8 @@
 #   Main file to run source code
 
 from data_operations import graph
+from utils import word_similarity as ws
 
-#graph.create_graph()
+print(ws.compare_words("alpha", "omega"))
 
-routes = [{"help" : "me"}, {"hah" : "hoh"}]
-
-if "help" not in routes:
-    print("not in")
-else:
-    print("in")
+print(ws.compare_words("yar", "ryy"))
