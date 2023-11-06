@@ -1,48 +1,73 @@
 # Authors: Mark, Steven, Yuuki
 # Description:
-#   Main file of source code
+#   Main file to run source code
 
-import pandas as pd
+#import data_querying.data_querying as dq
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 import time
-import os
 
-import convertjson
-import firebase
-import stats
+# Fetch the service account key JSON file contents
+cred = credentials.Certificate('./credentials.json')
 
-airlines_df = convertjson.df_new1
-airports_df = convertjson.df_new2
-countries_df = convertjson.df_new3
-planes_df = convertjson.df_new4
-routes_df = convertjson.df_new5
+# Initialize the app with a service account, granting admin privileges
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://flighttoolapp-default-rtdb.firebaseio.com'
+})
 
-times = list()
+#dq.list_collection("Planes", 5)
 
-times.append(time.time())
+def ListAirline(n):
+    airlineRef = db.reference('Airlines')
+    airline_list = []
 
-firebase.create_collection(airlines_df, "Airlines")
-times.append(time.time())
+    snapshot = airlineRef.order_by_key().limit_to_first(n).get()
 
-firebase.create_collection(airports_df, "Airports")
-times.append(time.time())
+    for key in snapshot:
+        airline_list.append(f"{snapshot[key]['Name']}")
 
-firebase.create_collection(countries_df, "Countries")
-times.append(time.time())
+    return airline_list
 
-firebase.create_collection(planes_df, "Planes")
-times.append(time.time())
+def ListAirport(n):
+    airportRef = db.reference('Airports')
+    airport_list = []
 
-firebase.create_collection(routes_df, "Routes")
-times.append(time.time())
+    snapshot = airportRef.order_by_key().limit_to_first(n).get()
 
-try:
-    os.mkdir("stats")
-    outfile = open("stats/realtimedb_stats.txt", "w")
+    for key in snapshot:
+        airport_list.append(f"{snapshot[key]['Name']}")
 
-    stats.write_collection_stats(outfile, times)
+    return airport_list
 
-    outfile.close()
-except:
-    outfile = open("realtimedb_stats.txt", "w")
-    stats.write_collection_stats(outfile, times)
-    outfile.close()
+def SerchAirport(input):
+    airportRef = db.reference('Airports')
+
+    snapshot = airportRef.order_by_key().equal_to(input).get()
+
+    for key in snapshot:
+        if key == input:
+            print(f"City: {snapshot[key]['City']}") # Show City
+            print(f"Country: {snapshot[key]['Country']['Name']}") # Show Country
+
+def main():
+    text = 'Tokyo Haneda International Airport'
+
+    start_time = time.time()
+    print("Airline: " + str(ListAirline(5)))
+    end_time = time.time()
+    print("Elapsed time (ListAirline()): " + str(end_time - start_time))
+    
+    start_time = time.time()
+    print("Airport: " + str(ListAirport(5)))
+    end_time = time.time()
+    print("Elapsed time (ListAirport()): " + str(end_time - start_time))
+
+    start_time = time.time()
+    SerchAirport(text)
+    end_time = time.time()
+    print("Elapsed time (SerchAirport()): " + str(end_time - start_time))
+
+
+if __name__ == "__main__":
+    main()
