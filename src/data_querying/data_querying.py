@@ -8,7 +8,7 @@ import math
 
 def list_collection(collection_name, first_n):
     """
-    Prints the "first_n" values in a collection given by "collection_name".\n
+    Gets the "first_n" values in a collection given by "collection_name".\n
     Set "first_n" to NaN to print the entire collection.\n\n
 
     Returns an ordered dict of the collection in question.
@@ -22,12 +22,18 @@ def list_collection(collection_name, first_n):
         else:
             collectionSnapshot = collectionRef.order_by_key().get()
 
-        print(type(collectionSnapshot))
-
-        for key in collectionSnapshot:
-            print(collectionSnapshot[key])
-
     except:
         print("Invalid collection.")
 
     return collectionSnapshot
+
+def print_collection(collection_name, first_n):
+    collectionList = list_collection(str(collection_name), first_n)
+
+    try:
+        for key in collectionList:
+            print(key)
+    except:
+        pass
+    
+    return
