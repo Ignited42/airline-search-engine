@@ -25,3 +25,6 @@ def create_collection(dataframe, collection_name):
             ref.child(str(i)).update(dataframe.iloc[i].to_dict())
 
     return
+
+def get_ref_collection(collection_name):
+    return db.reference(str(collection_name))
