@@ -11,6 +11,7 @@ import time
 from data_operations import graph
 from utils import word_similarity as ws
 
+"""
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('./credentials.json')
 
@@ -74,6 +75,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
 
 print(ws.compare_words("alpha", "omega"))
 
@@ -82,3 +84,5 @@ print(ws.compare_words("yar", "ryy"))
 print(ws.compare_words("help", "help_Bel"))
 
 print(ws.compare_words("woosh", "woo"))
+
+print(ws.compare_words("sorry", "osrry"))
