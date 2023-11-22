@@ -1,2 +1,3 @@
 **/credentials.json
 **/*.pem
+src/test_*.py
