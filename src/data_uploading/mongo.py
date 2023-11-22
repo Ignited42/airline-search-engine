@@ -8,5 +8,16 @@ uri = "mongodb+srv://cluster0.pywaf93.mongodb.net/?authSource=%24external&authMe
 client = pymongo.MongoClient(uri,
                      tls=True,
                      tlsCertificateKeyFile='./mongo_cert.pem',
-                     server_api=ServerApi('1'))
+                     server_api=pymongo.server_api.ServerApi('1'))
 
+def mongoDB_ping():
+    try:
+        client.admin.command('ping')
+        print("MongoDB successfully pinged!")
+    except Exception as e:
+        print(e)
+    return
+
+def mongoDB_uploadCollection(collectionName):
+    
+    return
