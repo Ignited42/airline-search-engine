@@ -10,6 +10,8 @@ client = pymongo.MongoClient(uri,
                      tlsCertificateKeyFile='./mongo_cert.pem',
                      server_api=pymongo.server_api.ServerApi('1'))
 
+db = client["FlightToolApp"]
+
 def mongoDB_ping():
     try:
         client.admin.command('ping')
@@ -18,6 +20,11 @@ def mongoDB_ping():
         print(e)
     return
 
-def mongoDB_uploadCollection(collectionName):
-    
+def mongoDB_uploadCollection(dataFrame, collectionName):
+    collection = db[collectionName]
+
+    print(dataFrame.head(4))
+    data = dataFrame.to_dict(orient="records")
+    result = collection.insert_many(data)
+    print(result.inserted_ids)
     return

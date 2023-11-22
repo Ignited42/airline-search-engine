@@ -6,9 +6,9 @@ import pandas as pd
 import time
 import os
 
-import convertjson
-import firestore
-import stats
+from data_cleaning import convertjson
+from data_uploading import mongo
+from data_uploading import stats
 
 airlines_df = convertjson.df_new1
 airports_df = convertjson.df_new2
@@ -17,33 +17,42 @@ planes_df = convertjson.df_new4
 routes_df = convertjson.df_new5
 
 times = list()
-"""
+
 times.append(time.time())
 
-firestore.create_collection(airlines_df, "Airlines")
+print("Starting Airlines collection")
+mongo.mongoDB_uploadCollection(airlines_df, "Airlines")
 times.append(time.time())
+print(times[-1] - times[-2])
 
-firestore.create_collection(airports_df, "Airports")
+print("Starting Airports collection")
+mongo.mongoDB_uploadCollection(airports_df, "Airports")
 times.append(time.time())
+print(times[-1] - times[-2])
 
-firestore.create_collection(countries_df, "Countries")
+print("Starting Countries collection")
+mongo.mongoDB_uploadCollection(countries_df, "Countries")
 times.append(time.time())
+print(times[-1] - times[-2])
 
-firestore.create_collection(planes_df, "Planes")
+print("Starting Planes collection")
+mongo.mongoDB_uploadCollection(planes_df, "Planes")
 times.append(time.time())
-"""
+print(times[-1] - times[-2])
+
 print("Starting Routes collection")
-firestore.create_collection(routes_df, "Routes")
+mongo.mongoDB_uploadCollection(routes_df, "Routes")
 times.append(time.time())
+print(times[-1] - times[-2])
 
 try:
     os.mkdir("stats")
-    outfile = open("stats/firestore_stats.txt", "w")
+    outfile = open("stats/mongodb_stats.txt", "w")
 
     stats.write_collection_stats(outfile, times)
 
     outfile.close()
 except:
-    outfile = open("firestore_stats.txt", "w")
+    outfile = open("stats/mongodb_stats.txt", "w")
     stats.write_collection_stats(outfile, times)
     outfile.close()
