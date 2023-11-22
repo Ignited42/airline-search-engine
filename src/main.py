@@ -44,7 +44,7 @@ def ListAirport(n):
 
     return airport_list
 
-def SerchAirport(input):
+def SearchAirport(input):
     airportRef = db.reference('Airports')
 
     snapshot = airportRef.order_by_key().equal_to(input).get()
@@ -68,7 +68,7 @@ def main():
     print("Elapsed time (ListAirport()): " + str(end_time - start_time))
 
     start_time = time.time()
-    SerchAirport(text)
+    SearchAirport(text)
     end_time = time.time()
     print("Elapsed time (SerchAirport()): " + str(end_time - start_time))
 
