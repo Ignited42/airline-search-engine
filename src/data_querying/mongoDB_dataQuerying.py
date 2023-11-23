@@ -49,9 +49,21 @@ def listAirportsInCountry(countryName):
 
     return airportsList
 
-def searchAirportInCountry(airportName, countryName):
-    # First, check if country exists
-    countryEntry = db["Countries"].find_one({"Name": countryName})
 
-    
-    
+"""
+Reference code:
+https://stackoverflow.com/questions/18501064/mongodb-aggregation-counting-distinct-fields
+https://stackoverflow.com/questions/24761266/select-group-by-count-and-distinct-count-in-same-mongodb-query/24770233#24770233
+"""
+def getBusiestCountry():
+    # Aggregate data to get busiest country by number of airports
+    busyList = []
+
+    pipeline = [
+        {
+            "$group": { "_id": { } }
+        }
+    ]
+
+
+    return
