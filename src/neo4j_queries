@@ -1,0 +1,30 @@
+GenerateNodes(){
+CALL apoc.load.json("file:///airports.json") YIELD value as airport
+MERGE (a:Airport {id:airport.ID})
+SET a.name = airport.Name,
+    a.city = airport.City,
+    a.code = airport.Code.IATA
+}
+
+GenerateEdges(){
+CALL apoc.load.json("file:///routes.json") YIELD value as route
+MATCH (source:Airport {code: route.Airports.`Source ID`})
+WITH source, route
+MATCH (destination:Airport {code:route.Airports.`Destination ID`})
+CREATE (source)-[r:ROUTE_TO]->(destination)
+RETURN type(r) LIMIT 10
+
+}
+
+FindPath(value1, value2){
+MATCH (start:Airport {city: 'value1'}), (end:Airportl {city: 'value2'})
+MATCH path = shortestPath((start)-[*..10]-(end))
+RETURN path
+}
+
+ConnectedCities(){
+MATCH (n:Airport {city: 'value'})-[:ROUTE_TO]-(connectedCity)
+RETURN connectedCity
+}
+
+// These codes are queries for Neo4j. We need to change form to be able to use in Python application.
