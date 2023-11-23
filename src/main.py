@@ -9,5 +9,3 @@ from data_uploading import mongo
 
 from data_operations import graph
 from utils import word_similarity as ws
-
-mongo.mongoDB_ping()
