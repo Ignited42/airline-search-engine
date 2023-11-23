@@ -1,4 +1,4 @@
-# Author: Steven Subianto
+# Author: Steven
 # Description:
 #   Data upload to and import from MongoDB.
 
