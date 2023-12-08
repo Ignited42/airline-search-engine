@@ -72,6 +72,7 @@ def listAirportsInCountry(countryName):
 Reference code:
 https://stackoverflow.com/questions/18501064/mongodb-aggregation-counting-distinct-fields
 https://stackoverflow.com/questions/24761266/select-group-by-count-and-distinct-count-in-same-mongodb-query/24770233#24770233
+https://stackoverflow.com/questions/13210730/how-to-make-pymongos-find-return-a-list
 """
 def listBusiestCountries():
     """
@@ -99,7 +100,7 @@ def listBusiestCountries():
     ]
 
     try:
-        busyList = db["Airports"].aggregate(pipeline)
+        busyList = list(db["Airports"].aggregate(pipeline))
     except Exception as e:
         print(e)
 
