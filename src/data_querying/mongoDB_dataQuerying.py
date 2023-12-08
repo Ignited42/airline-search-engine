@@ -75,7 +75,9 @@ https://stackoverflow.com/questions/24761266/select-group-by-count-and-distinct-
 """
 def listBusiestCountries():
     """
-    Returns a list of countries sorted by their 
+    Returns a list of countries sorted by the number of airports.
+
+    Done by retrieving from MongoDB and using their aggregation pipeline.
     """
 
     # Aggregate data to get busiest country by number of airports
@@ -83,9 +85,22 @@ def listBusiestCountries():
 
     pipeline = [
         {
-            "$group": { "_id": { } }
+            "$group": {
+                "_id": { "Country": "$Country.Name" },
+                "Count" : { "$sum": 1 },
+                "Airports" : { "$addToSet": "$_id" }
+            }
+        },
+        {
+            "$sort": {
+                "Count" : pymongo.DESCENDING
+            }
         }
     ]
 
+    try:
+        busyList = db["Airports"].aggregate(pipeline)
+    except Exception as e:
+        print(e)
 
-    return
+    return busyList
