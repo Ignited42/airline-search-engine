@@ -34,6 +34,8 @@ def getCollection(collectionName):
     Retrieves a collection by its name from the remote MongoDB.
 
      - collectionName: name of a valid collection
+
+    Returns the collection as a List.
     """
     try:
         #Spark implementation
@@ -43,7 +45,7 @@ def getCollection(collectionName):
                     .option("collection", collectionName).load()"""
         
         #Alt implementation
-        collection = db[collectionName].find()
+        collection = list(db[collectionName].find())
     except Exception as e:
         print(e)
     
@@ -62,8 +64,7 @@ def listAirportsInCountry(countryName):
     # Next, deliver the list
     if countryEntry is not None:
         airportsColl = db["Airports"].find({"Country.Name": countryName})
-        for entry in airportsColl:
-            airportsList.append(entry)
+        airportsList = list(airportsColl)
 
     return airportsList
 
@@ -76,7 +77,7 @@ https://stackoverflow.com/questions/13210730/how-to-make-pymongos-find-return-a-
 """
 def listBusiestCountries():
     """
-    Returns a list of countries sorted by the number of airports.
+    Returns a List of countries sorted by the number of airports.
 
     Done by retrieving from MongoDB and using their aggregation pipeline.
     """
