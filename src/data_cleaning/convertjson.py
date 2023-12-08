@@ -5,7 +5,7 @@
 
 import pandas as pd
 from json import loads, dumps
-import properjsondocument
+from data_cleaning import properjsondocument
 import time
 
 start_time = time.time()
@@ -97,8 +97,13 @@ parsed = loads(airports_json)
 #entry = df_new3.loc[df_new3['Name'] == df_new1.iloc[1]['Country']].to_dict('records')[0]
 #df_new1.at[1, "Country"] = entry
 
+print("Creating airlines collection")
 properjsondocument.create_airline_collection(df_new1, df_new3)
+
+print("Creating airports collection")
 properjsondocument.create_airports_collection(df_new2, df_new3)
+
+print("Creating routes collection")
 properjsondocument.create_routes_collection(df_new5, df_new2)
 
 end_time = time.time()

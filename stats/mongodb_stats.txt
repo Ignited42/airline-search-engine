@@ -1,0 +1,10 @@
+Statistics taken on: 2023-11-21 20:19:48.916517
+
+	0: 1700626757.578069		Difference from previous time: 1700626757.578069
+	1: 1700626760.923336		Difference from previous time: 3.3452670574188232
+	2: 1700626767.876985		Difference from previous time: 6.953649044036865
+	3: 1700626768.9971619		Difference from previous time: 1.1201767921447754
+	4: 1700626771.0310261		Difference from previous time: 2.0338642597198486
+	5: 1700626788.9155169		Difference from previous time: 17.884490728378296
+
+Total time taken: 31.33744788169861
