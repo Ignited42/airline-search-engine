@@ -18,41 +18,43 @@ routes_df = convertjson.df_new5
 
 times = list()
 
+isLocal = 1
+
 times.append(time.time())
 
 print("Starting Airlines collection")
-mongo.mongoDB_uploadCollection(airlines_df, "Airlines")
+mongo.uploadCollection(airlines_df, "Airlines", isLocal)
 times.append(time.time())
 print(times[-1] - times[-2])
 
 print("Starting Airports collection")
-mongo.mongoDB_uploadCollection(airports_df, "Airports")
+mongo.uploadCollection(airports_df, "Airports", isLocal)
 times.append(time.time())
 print(times[-1] - times[-2])
 
 print("Starting Countries collection")
-mongo.mongoDB_uploadCollection(countries_df, "Countries")
+mongo.uploadCollection(countries_df, "Countries", isLocal)
 times.append(time.time())
 print(times[-1] - times[-2])
 
 print("Starting Planes collection")
-mongo.mongoDB_uploadCollection(planes_df, "Planes")
+mongo.uploadCollection(planes_df, "Planes", isLocal)
 times.append(time.time())
 print(times[-1] - times[-2])
 
 print("Starting Routes collection")
-mongo.mongoDB_uploadCollection(routes_df, "Routes")
+mongo.uploadCollection(routes_df, "Routes", isLocal)
 times.append(time.time())
 print(times[-1] - times[-2])
 
 try:
     os.mkdir("stats")
-    outfile = open("stats/mongodb_stats.txt", "w")
+    outfile = open("stats/mongodb_local_stats.txt", "w")
 
     stats.write_collection_stats(outfile, times)
 
     outfile.close()
 except:
-    outfile = open("stats/mongodb_stats.txt", "w")
+    outfile = open("stats/mongodb_local_stats.txt", "w")
     stats.write_collection_stats(outfile, times)
     outfile.close()
