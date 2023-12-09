@@ -18,18 +18,23 @@ client = { 0: pymongo.MongoClient(uri,
                                 tlsCertificateKeyFile='./mongo_cert.pem',
                                 server_api=pymongo.server_api.ServerApi('1'))}
 
-db = { 0: client["FlightToolApp"]}
+db = { 0: client[0]["FlightToolApp"]}
 
 """
 Local DB, indexed as 1 for variables: `client` and `db`
 """
 localUri = "mongodb://localhost:27017"
 try:
-    client = { 1: pymongo.MongoClient(localUri) }
-    db = { 1: client[1]["FlightToolApp"] }
+    client.update({ 1: pymongo.MongoClient(localUri) })
+    db.update({ 1: client[1]["FlightToolApp"] })
 except Exception as e:
     print(e)
 
+"""spark = SparkSession.builder.appName("FlightToolApp") \
+                            .config("spark.mongodb.read.connection.uri", localUri + str("/test.coll")) \
+                            .config("spark.mongodb.write.connection.uri", localUri + str("/test.coll")) \
+                            .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.2.1") \
+                            .getOrCreate()"""
 
 # ========================================================================
 
@@ -47,17 +52,25 @@ def getCollection(collectionName, isLocal):
     if isLocal != 0 and isLocal != 1:
         return 
 
+    collection = []
+
     try:
+        """
         #Spark implementation
         if isLocal == 1:
-            """ 
             dataFrame = spark.read.format("mongodb") \
                         .option("database", "FlightToolApp") \
-                        .option("collection", collectionName).load()"""
-        
+                        .option("collection", collectionName).load()
+            
+            dataFrame.printSchema()
+            dataFrame.show()
+
         #Alt implementation
         else:
-            collection = list(db[isLocal][collectionName].find())
+            collection = list(db[isLocal][collectionName].find())    
+        """
+        collection = list(db[isLocal][collectionName].find())    
+        
     except Exception as e:
         print(e)
     
@@ -72,8 +85,7 @@ def listAirportsInCountry(countryName, isLocal):
     - isLocal: determines if the mongoDB server is the remote (0) or local (1) one
     """
     if isLocal != 0 and isLocal != 1:
-        return     
-
+        return
     
     # First, check if country exists
     countryEntry = db[isLocal]["Countries"].find_one({"Name": countryName})
