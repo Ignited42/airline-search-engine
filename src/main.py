@@ -3,9 +3,6 @@
 #   Main file to run source code
 
 #import data_querying.data_querying as dq
-import firebase_admin
-import time
-from data_uploading import mongo
+from utils import menu
 
-from data_operations import graph
-from utils import word_similarity as ws
+menu.run_main_menu()

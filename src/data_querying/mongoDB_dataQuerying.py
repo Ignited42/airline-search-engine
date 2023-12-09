@@ -85,8 +85,7 @@ def listAirportsInCountry(countryName, isLocal):
     - isLocal: determines if the mongoDB server is the remote (0) or local (1) one
     """
     if isLocal != 0 and isLocal != 1:
-        return     
-
+        return
     
     # First, check if country exists
     countryEntry = db[isLocal]["Countries"].find_one({"Name": countryName})

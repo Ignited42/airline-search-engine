@@ -1,0 +1,10 @@
+Statistics taken on: 2023-12-08 22:30:20.988282
+
+	0: 1702103420.9861608		Difference from previous time: 1702103420.9861608
+	1: 1702103420.9871724		Difference from previous time: 0.0010116100311279297
+	2: 1702103420.9871724		Difference from previous time: 0.0
+	3: 1702103420.9881794		Difference from previous time: 0.001007080078125
+	4: 1702103420.9882824		Difference from previous time: 0.000102996826171875
+	5: 1702103420.9882824		Difference from previous time: 0.0
+
+Total time taken: 0.0021216869354248047
