@@ -1,41 +1,71 @@
-# Import PyQt5 modules
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QListWidget, QTableWidget, QTableWidgetItem, QLineEdit, QDialog
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QPixmap
 
-# Define a class for the main window
 class App(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.title = 'pyqt_app'
+        self.title = 'Flight Information App'
         self.left = 100
         self.top = 100
-        self.width = 320
-        self.height = 200
+        self.width = 640
+        self.height = 480
         self.initUI()
     
     def initUI(self):
-        # Set the window title and size
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        # Create a button and connect it to a slot
-        self.button = QPushButton('Click me', self)
-        self.button.move(100, 70)
-        self.button.clicked.connect(self.on_click)
+        # Main layout
+        main_layout = QVBoxLayout()
 
-        # Create a label and set its initial text
-        self.label = QLabel('Hello, world!', self)
-        self.label.move(120, 120)
+        # Menu buttons
+        menu_layout = QHBoxLayout()
+        btn_airlines = QPushButton('Airlines', self)
+        btn_airlines.clicked.connect(self.show_airlines)
+        btn_airports = QPushButton('Airports', self)
+        btn_airports.clicked.connect(self.show_airports)
+        menu_layout.addWidget(btn_airlines)
+        menu_layout.addWidget(btn_airports)
+        main_layout.addLayout(menu_layout)
 
-        # Show the window
-        self.show()
-    
-    # Define a slot for the button click
+        # Scrollable List
+        self.list_widget = QListWidget(self)
+        main_layout.addWidget(self.list_widget)
+
+        # Scrollable Table
+        self.table_widget = QTableWidget(self)
+        main_layout.addWidget(self.table_widget)
+
+        # Textbox for user input
+        self.textbox = QLineEdit(self)
+        main_layout.addWidget(self.textbox)
+
+        # Label for displaying text
+        self.label = QLabel('Select an option', self)
+        main_layout.addWidget(self.label)
+
+        # Set the main layout
+        self.setLayout(main_layout)
+
     @pyqtSlot()
-    def on_click(self):
-        # Change the label text
-        self.label.setText('You clicked the button!')
+    def show_airlines(self):
+        # You can populate this list with airline data
+        self.list_widget.clear()
+        self.list_widget.addItem("Airline 1")
+        self.list_widget.addItem("Airline 2")
+
+    @pyqtSlot()
+    def show_airports(self):
+        # Populate the table with airport data
+        self.table_widget.clear()
+        self.table_widget.setRowCount(2)
+        self.table_widget.setColumnCount(2)
+        self.table_widget.setItem(0, 0, QTableWidgetItem("Airport 1"))
+        self.table_widget.setItem(0, 1, QTableWidgetItem("Location 1"))
+        self.table_widget.setItem(1, 0, QTableWidgetItem("Airport 2"))
+        self.table_widget.setItem(1, 1, QTableWidgetItem("Location 2"))
 
 # Create an application instance and run it
 if __name__ == '__main__':
