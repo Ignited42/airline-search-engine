@@ -124,7 +124,7 @@ def listBusiestCountries(isLocal):
             "$group": {
                 "_id": { "Country": "$Country.Name" },
                 "Count" : { "$sum": 1 },
-                "Airports" : { "$addToSet": "$Name" }
+                "Airports" : { "$addToSet": "$_id" }
             }
         },
         {
@@ -140,31 +140,3 @@ def listBusiestCountries(isLocal):
         print(e)
 
     return busyList
-
-def getAirportByName(airportName):
-    """
-    Retrieves the document storing an Airport by searching for its name.
-
-    ### Parameter:
-    - airportName: string
-
-    ### Returns:
-    A dict representation of the airport
-    """
-
-    airport = {}
-
-    pipeline = [
-        {
-            "$match": {
-                "Name": airportName
-            }
-        }
-    ]
-
-    try:
-        airport = list(db[0]["Airports"].aggregate(pipeline))[0]
-    except Exception as e:
-        print(e)
-
-    return airport
