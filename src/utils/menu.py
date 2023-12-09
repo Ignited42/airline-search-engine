@@ -16,6 +16,7 @@ def run_main_menu():
 2. List airports in country
 3. List busiest countries
 4. See destinations
+5. Within N hops
 
 0. Exit application
 """)
@@ -40,6 +41,9 @@ def run_main_menu():
 
             case 4:
                 run_case4()
+            
+            case 5:
+                run_case5()
 
             case 0:
                 stopMenu = True
@@ -54,8 +58,7 @@ def run_case1():
     while stopMenu != True:
         print("""
 Enter an empty string or 0 to go back.
-Input the name of the airport:
-""")
+Input the name of the airport: """, end="")
         userInput = input()
 
         if userInput == "" or userInput == "0":
@@ -74,8 +77,7 @@ def run_case2():
     while stopMenu != True:
         print("""
 Enter an empty string or 0 to go back.
-Input the name of a country:
-""")
+Input the name of a country: """, end="")
         userInput = input()
 
         if userInput == "" or userInput == "0":
@@ -115,7 +117,7 @@ def run_case3():
 Enter an empty string or 0 to go back.
 Input a range of values to see certain ranges, example:
                                     `1 20` gives the first to twentieth busiest airport.
-""")
+Input: """, end="")
         userInput = input()
 
         if userInput == "" or userInput == "0":
@@ -142,8 +144,8 @@ def run_case4():
     while stopMenu != True:
         print("""
 Enter an empty string or 0 to go back.
-Input the name of an airport:
-""")
+Input the name of an airport: """, end="")
+        
         userInput = input()
 
         if userInput == "" or userInput == "0":
@@ -153,3 +155,35 @@ Input the name of an airport:
             print("Airports within one stop:")
             for neighbor in neighbors:
                 print(f"\t{neighbor}")
+
+def run_case5():
+    """
+    Runs the case where the user wants to see the reachability of a given airport within
+    a specified number of hops.
+    """
+
+    stopMenu = False
+    
+    while stopMenu != True:
+        print("""
+Enter an empty string or 0 to go back.
+Input the name of an airport and the number of stops, example: `Madang Airport 2` """, end="")
+        userInput = input()
+
+        if userInput == "" or userInput == "0":
+            stopMenu = True
+        else:
+            inputList = userInput.split()
+
+            airportName = ""
+            nHops = 0
+
+            for term in range(inputList-1):
+                airportName = airportName + " " + str(term)
+
+            try:
+                nHops = int(inputList[-1])
+                nHopsList = dataOp.withinNHops(airportName, nHops, routesDF)
+                printHelper.printNHopsList(nHopsList)
+            except Exception as e:
+                print(e)

@@ -29,3 +29,17 @@ def printBusiestCountry(country):
         print("{countryName} - {count}")
     except Exception as e:
         print(e)
+
+def printNHopsList(nHopsList):
+    """
+    Prints the contents of nHopsList, which is given by withinNHops().
+    """
+
+    try:
+        for hops in range(len(nHopsList)):
+            print(f"{hops + 1}: ")
+            for airport in nHopsList[hops + 1]:
+                print(f"\t{airport}")
+
+    except Exception as e:
+        print(e)
