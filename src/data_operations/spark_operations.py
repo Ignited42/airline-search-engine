@@ -4,12 +4,71 @@
 
 import findspark
 findspark.init()
-
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
+import pandas as pd
 
-def getNeighbors(airportName, routesList):
+def getNeighbors(airportName, routesDF):
+    """
+    Get the neighboring airports to a given airport.
+    Takes into account one-way routes.
     
+    ### Parameters
+    - airportName: string
+    - routesDF: pandas Dataframe, given by prepareRoutes()
 
-    return
+    ### Returns
+    - list of neighboring airports' names
+    """
+    spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
+
+    sparkDF = spark.createDataFrame(routesDF)
+
+    sourceFiltered = sparkDF.filter(sparkDF["Source airport"] == airportName)\
+                            .select("Destination airport").distinct()
+    destFiltered = sparkDF.filter(sparkDF["Destination airport"] == airportName)\
+                            .select("Source airport").distinct()
+
+    neighbors = sourceFiltered.union(destFiltered).distinct()
+    neighborList = list(neighbors.toPandas().iloc[:,0])
+
+    spark.stop()
+
+    return neighborList
+
+def prepareRoutes(routesList):
+    """
+    The routes list is in improper format to convert into a Spark Dataframe.
+    This function prepares the list to a valid format.
+
+    ### Parameter
+    - routesList: the default Routes collection retrieved from MongoDB
+
+    ### Returns
+    A pandas Dataframe containing only:
+    - Source airport name
+    - Destination airport name
+
+    ### Bugs
+    Due to improper BSON handling, some entries are not stored properly when the data was
+    uploaded onto the MongoDB database.  This results in non-standard schemas; some entries
+    contain the incorrect field.
+    """
+
+    routesDF = pd.DataFrame(routesList)
+    routesDF = routesDF.drop(columns=["_id","Codeshare","Airline"], axis=1)
+
+    for x in routesDF.index:
+        try:
+            sourceName = routesDF.iloc[x]["Airports"]["Source"]["Name"]
+            destName = routesDF.iloc[x]["Airports"]["Destination"]["Name"]
+        except:
+            sourceName = routesDF.iloc[x]["Airports"]["Source Name"]
+            destName = routesDF.iloc[x]["Airports"]["Destination Name"]
+        
+        routesDF.at[x, "Source airport"] = sourceName
+        routesDF.at[x, "Destination airport"] = destName
+
+    routesDF = routesDF.drop(columns=["Airports","Stops"], axis=1)
+
+    return routesDF
