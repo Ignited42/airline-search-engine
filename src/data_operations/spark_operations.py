@@ -11,7 +11,6 @@ import pandas as pd
 def getNeighbors(airportName, routesDF):
     """
     Get the neighboring airports to a given airport.
-    Takes into account one-way routes.
     
     ### Parameters
     - airportName: string
@@ -26,15 +25,12 @@ def getNeighbors(airportName, routesDF):
 
     sourceFiltered = sparkDF.filter(sparkDF["Source airport"] == airportName)\
                             .select("Destination airport").distinct()
-    destFiltered = sparkDF.filter(sparkDF["Destination airport"] == airportName)\
-                            .select("Source airport").distinct()
 
-    neighbors = sourceFiltered.union(destFiltered).distinct()
-    neighborList = list(neighbors.toPandas().iloc[:,0])
+    neighbors = list(sourceFiltered.toPandas().iloc[:,0])
 
     spark.stop()
 
-    return neighborList
+    return neighbors
 
 def prepareRoutes(routesList):
     """
