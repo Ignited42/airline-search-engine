@@ -68,3 +68,25 @@ def prepareRoutes(routesList):
     routesDF = routesDF.drop(columns=["Airports","Stops"], axis=1)
 
     return routesDF
+
+def getNeighborsList(airports, routesDF):
+    """
+    Returns a list of airports that are adjacent to the input `airports`.
+
+    ### Parameters
+    - airports: list of airport names (string)
+    - routesDF: pandas Dataframe, given by prepareRoutes()
+    """
+
+    spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
+
+    sparkDF = spark.createDataFrame(routesDF)
+
+    sourceFiltered = sparkDF.filter(sparkDF["Source airport"].isin(airports))\
+                            .select("Destination airport").distinct()
+
+    neighbors = list(sourceFiltered.toPandas().iloc[:,0])
+
+    spark.stop()
+
+    return neighbors
