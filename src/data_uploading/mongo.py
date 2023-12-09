@@ -20,15 +20,12 @@ Local DB, indexed as 1 for variables: `client` and `db`
 """
 localUri = "mongodb://localhost:27017"
 try:
-    client = { 1: pymongo.MongoClient(localUri) }
-    db = { 1: client[1]["FlightToolApp"] }
+    client.update({ 1: pymongo.MongoClient(localUri) })
+    db.update({ 1: client[1]["FlightToolApp"] })
 except Exception as e:
     print(e)
 
-
-
 # ======================================================================
-
 
 def ping(isLocal):
     """
