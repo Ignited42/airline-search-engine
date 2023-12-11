@@ -8,6 +8,8 @@ from pyspark.sql import SparkSession
 
 import pandas as pd
 
+spark = SparkSession.builder.getOrCreate()
+
 def getNeighbors(airportName, routesDF):
     """
     Get the neighboring airports to a given airport.
@@ -19,7 +21,6 @@ def getNeighbors(airportName, routesDF):
     ### Returns
     - list of neighboring airports' names
     """
-    spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
 
     sparkDF = spark.createDataFrame(routesDF)
 
@@ -27,8 +28,6 @@ def getNeighbors(airportName, routesDF):
                             .select("Destination airport").distinct()
 
     neighbors = list(sourceFiltered.toPandas().iloc[:,0])
-
-    spark.stop()
 
     return neighbors
 
@@ -71,25 +70,23 @@ def prepareRoutes(routesList):
 
 def getNeighborsList(airports, routesDF):
     """
-    Returns a list of airports that are adjacent to the input `airports`.
+    Returns a Spark Dataframe of airports that are adjacent to the input `airports`.
 
     ### Parameters
     - airports: list of airport names (string)
     - routesDF: pandas Dataframe, given by prepareRoutes()
-    """
 
-    spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
+    ### Returns
+    A Spark Dataframe, containing one column; that is the list of airports adjacent
+    to the input `airports`. 
+    """
 
     sparkDF = spark.createDataFrame(routesDF)
 
     sourceFiltered = sparkDF.filter(sparkDF["Source airport"].isin(airports))\
                             .select("Destination airport").distinct()
 
-    neighbors = list(sourceFiltered.toPandas().iloc[:,0])
-
-    spark.stop()
-
-    return neighbors
+    return sourceFiltered
 
 def withinNHops(airport, nHops, routesDF):
     """
@@ -101,37 +98,39 @@ def withinNHops(airport, nHops, routesDF):
     - routesDF: pandas Dataframe, given by prepareRoutes()
 
     ### Returns
-    A list of dicts {n: [airports]} where n is the number of hops
+    A dict `{n: [airports], ...}` where `n` is the exact number of hops it takes
+    to reach the list of airports: `[airports]`.
 
     ### Bugs
     Currently doesn't work.
     """
 
-    spark = SparkSession.builder.appName("SparkOperations").getOrCreate()
-    nHopsList = []
+    dFList = {}
     airports = [airport]
 
     if nHops is not int and nHops <= 0:
         return
     else:
+        # Create DataFrame version of the dict first
         for hop in range(nHops):
-            neighbors = getNeighborsList(airports, routesDF)
-            currDF = spark.createDataFrame(pd.DataFrame(neighbors))
+            currDF = getNeighborsList(airports, routesDF)
 
-            if len(nHopsList) > 0:
-                cumulPrevDF = spark.createDataFrame(pd.DataFrame(nHopsList[1]))
-
-                for prev in range(len(nHopsList) - 1):
-                    prevDF = spark.createDataFrame(pd.DataFrame(nHopsList[prev + 1]))
+            if len(dFList) > 0:
+                cumulPrevDF = dFList[1]
+                for prev in range(1, len(dFList)):
+                    prevDF = dFList[prev + 1]
                     cumulPrevDF = cumulPrevDF.union(prevDF).distinct()
 
-                    currDF = currDF.subtract(cumulPrevDF)
+                currDF = currDF.subtract(cumulPrevDF)
             
-            
-            nHopsList.append({ (hop+1): list(currDF.toPandas().iloc[:,0]) })
+            dFList.update({ (hop+1): currDF })
 
-            airports = nHopsList[hop+1]
+            airports = list(dFList[hop+1].toPandas().iloc[:,0])
+        
+        # Create list version of dict
+        nHopsList = {0: [airport]}
 
-    spark.stop()
+        for hop in range(len(dFList)):
+            nHopsList.update({ (hop+1): list(dFList[hop+1].toPandas().iloc[:,0]) })
 
     return nHopsList
