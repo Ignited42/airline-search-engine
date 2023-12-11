@@ -7,8 +7,11 @@ WSU Fall 2023, Project
 2. Set its bin as part of the PATH environment variable.  (Example path: C:\Program Files\MongoDB\Server\7.0\bin)
 3. Run the `start_mongodb_server.bat`` file on cmd.
 
+Note: In case that the local database doesn't start, run `repair_mongodb_server.bat`.
+
 
 **Running the program**
+
 To run the program, you can double-click on the `main.bat`` file.
 
 For developers, make sure you've downloaded your JSON credentials from the RealTime DB and save it in the current working directory as credentials.json:
