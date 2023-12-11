@@ -30,11 +30,11 @@ try:
 except Exception as e:
     print(e)
 
-"""spark = SparkSession.builder.appName("FlightToolApp") \
-                            .config("spark.mongodb.read.connection.uri", localUri + str("/test.coll")) \
-                            .config("spark.mongodb.write.connection.uri", localUri + str("/test.coll")) \
-                            .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.2.1") \
-                            .getOrCreate()"""
+spark = SparkSession.builder.appName("Flight Tool App") \
+            .config("spark.mongodb.read.connection.uri", localUri) \
+            .config("spark.mongodb.write.connection.uri", localUri) \
+            .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.2.1") \
+            .getOrCreate()
 
 # ========================================================================
 
@@ -55,21 +55,19 @@ def getCollection(collectionName, isLocal):
     collection = []
 
     try:
-        """
         #Spark implementation
         if isLocal == 1:
             dataFrame = spark.read.format("mongodb") \
-                        .option("database", "FlightToolApp") \
-                        .option("collection", collectionName).load()
+                            .option("uri","mongodb://127.0.0.1:27017") \
+                            .option("database", "FlightToolApp") \
+                            .option("collection", collectionName).load()
             
             dataFrame.printSchema()
-            dataFrame.show()
+            #dataFrame.show()
 
         #Alt implementation
         else:
-            collection = list(db[isLocal][collectionName].find())    
-        """
-        collection = list(db[isLocal][collectionName].find())    
+            collection = list(db[isLocal][collectionName].find())
         
     except Exception as e:
         print(e)
