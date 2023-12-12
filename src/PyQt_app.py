@@ -1,64 +1,85 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QListWidget, QTableWidget, QTableWidgetItem
-from PyQt5.QtCore import pyqtSlot
-import pymongo
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QPushButton, QStackedWidget, QTableWidget, QDialog
 
-class App(QWidget):
+class MainWidget(QWidget):
+    def __init__(self, stacked_widget):
+        super().__init__()
+        self.stacked_widget = stacked_widget
+        self.initUI()
 
+    def initUI(self):
+        layout = QVBoxLayout()
+
+        self.airports_button = QPushButton('Airports', self)
+        self.airports_button.clicked.connect(self.show_airports)
+        layout.addWidget(self.airports_button)
+
+        self.airlines_button = QPushButton('Airlines', self)
+        self.airlines_button.clicked.connect(self.show_airlines)
+        layout.addWidget(self.airlines_button)
+        
+        self.routes_button = QPushButton('Routes', self)
+        self.routes_button.clicked.connect(self.show_airlines)
+        layout.addWidget(self.routes_button)
+        
+        self.search_button = QPushButton('Search', self)
+        self.search_button.clicked.connect(self.show_airlines)
+        layout.addWidget(self.search_button)
+
+        # Add buttons for Routes and Search with their respective click events
+        
+        self.setLayout(layout)
+
+    def show_airports(self):
+        self.stacked_widget.setCurrentIndex(1)  # Index of the airports view
+    
+    def show_airlines(self):
+        self.stacked_widget.setCurrentIndex(2)  # Index of the airlines view
+        
+    def show_routes(self):
+        self.stacked_widget.setCurrentIndex(3)  # Index of the airlines view
+        
+    def show_search(self):
+        self.stacked_widget.setCurrentIndex(4)  # Index of the airlines view
+
+    # Implement functions to show routes and search views
+
+
+class AirportWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.title = 'Flight Information App'
-        self.left = 100
-        self.top = 100
-        self.width = 640
-        self.height = 480
         self.initUI()
-    
+
     def initUI(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        layout = QVBoxLayout()
+        self.table = QTableWidget(self)
+        # Set up your table with data
+        layout.addWidget(self.table)
+        self.setLayout(layout)
 
-        # Main layout
-        main_layout = QVBoxLayout()
+    # Include a button or mechanism to return to the main view
 
-        # Menu buttons
-        menu_layout = QHBoxLayout()
-        btn_airlines = QPushButton('Airlines', self)
-        btn_airports = QPushButton('Airports', self)
-        btn_airlines.clicked.connect(self.show_airlines)
-        btn_airports.clicked.connect(self.show_airports)
-        menu_layout.addWidget(btn_airlines)
-        menu_layout.addWidget(btn_airports)
-        main_layout.addLayout(menu_layout)
 
-        # Scrollable List
-        self.list_widget = QListWidget(self)
-        main_layout.addWidget(self.list_widget)
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
 
-        # Scrollable Table
-        self.table_widget = QTableWidget(self)
-        self.table_widget.setColumnCount(2)  # Example column count
-        main_layout.addWidget(self.table_widget)
+    def initUI(self):
+        self.stacked_widget = QStackedWidget(self)
+        self.setCentralWidget(self.stacked_widget)
 
-        self.setLayout(main_layout)
-        self.show()
-
-    @pyqtSlot()
-    def show_airlines(self):
-        self.list_widget.clear()
-        self.list_widget.addItems(["Airline 1", "Airline 2", "Airline 3"])  # Example items
-
-    @pyqtSlot()
-    def show_airports(self):
-        self.table_widget.clear()
-        self.table_widget.setRowCount(3)  # Example row count
-        self.table_widget.setItem(0, 0, QTableWidgetItem("Airport 1"))
-        self.table_widget.setItem(0, 1, QTableWidgetItem("Location 1"))
-        self.table_widget.setItem(1, 0, QTableWidgetItem("Airport 2"))
-        self.table_widget.setItem(1, 1, QTableWidgetItem("Location 2"))
-        self.table_widget.setItem(2, 0, QTableWidgetItem("Airport 3"))
-        self.table_widget.setItem(2, 1, QTableWidgetItem("Location 3"))
+        main_widget = MainWidget(self.stacked_widget)
+        airport_widget = AirportWidget()  # You will add AirlinesWidget, RoutesWidget, and SearchWidget similarly
+        # Add widgets to the stacked widget
+        self.stacked_widget.addWidget(main_widget)
+        self.stacked_widget.addWidget(airport_widget)
+        
+        
+        # Continue adding other views
 
 if __name__ == '__main__':
-    app = QApplication([])
-    ex = App()
-    app.exec_()
+    app = QApplication(sys.argv)
+    main_window = MainWindow()
+    main_window.show()
+    sys.exit(app.exec_())
