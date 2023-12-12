@@ -6,7 +6,6 @@ import findspark
 findspark.init()
 
 import pymongo
-import pprint
 from pyspark.sql import SparkSession
 
 """
@@ -122,7 +121,7 @@ def listBusiestCountries(isLocal):
             "$group": {
                 "_id": { "Country": "$Country.Name" },
                 "Count" : { "$sum": 1 },
-                "Airports" : { "$addToSet": "$_id" }
+                "Airports" : { "$addToSet": "$Name" }
             }
         },
         {
